@@ -22,16 +22,36 @@ public class Loja {
 
     }
 
-    public void createDigitalProduct(String nome, double preco, int estoque, tipoPdt tipoPdt, ProdutoDigital.tipo tipo){
+    public void createDigitalProduct(String nome, double preco, int estoque, tipoPdt tipoPdt){
         int id = gerador.nextInt(1000) + 1;
-        ProdutoDigital produto = new ProdutoDigital();
-        produto.setEstoque(estoque);
-        produto.setId(id);
-        produto.setNome(nome);
-        produto.setPreco(preco);
-        produto.setTipoPdt(tipoPdt);
-        produto.setTipo(tipo);
-        productList.add(produto);
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Esse produto é físico ou digital?\n1 - Digital \n 2 - Físico");
+        int tipoDeProduto = scan.nextInt();
+
+        if(tipoDeProduto == 1){
+            System.out.printf("Produto Digital - Defina um tipo à ele:");
+            ProdutoDigital produto = new ProdutoDigital();
+            produto.setEstoque(estoque);
+            produto.setId(id);
+            produto.setNome(nome);
+            produto.setPreco(preco);
+            produto.setTipoPdt(tipoPdt);
+            produto.setTipo(ProdutoDigital.tipo.EBOOK);
+            productList.add(produto);
+        }else{
+            System.out.printf("Produto Físico - Defina um peso à ele:");
+            double peso = scan.nextDouble();
+            ProdutoFisico produto = new ProdutoFisico();
+            produto.setEstoque(estoque);
+            produto.setId(id);
+            produto.setNome(nome);
+            produto.setPreco(preco);
+            produto.setTipoPdt(tipoPdt);
+            produto.setPeso(peso);
+            productList.add(produto);
+        }
+
+
 
     }
 
