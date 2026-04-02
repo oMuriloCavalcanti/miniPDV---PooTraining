@@ -1,34 +1,63 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Loja {
     private String brandName;
     private List<Produto> productList;
     private List<Venda> salesList;
-
+    Random gerador = new Random();
     public Loja(){
         this.brandName = "";
         this.productList = new ArrayList<Produto>();
+        this.salesList = new ArrayList<Venda>();
+
     }
 
     public void setBrandName(String brandName){ this.brandName = brandName;}
     public String getBrandName(){ return this.brandName;}
 
     public void makeSale(){
-        // Parametros viram venda e venda é atribuida à salesList
-    }
-
-    public void createProduct(){
-        // Parametros viram produto e produto é atribuida à productList
 
     }
+
+    public void createDigitalProduct(String nome, double preco, int estoque, tipoPdt tipoPdt, ProdutoDigital.tipo tipo){
+        int id = gerador.nextInt(1000) + 1;
+        ProdutoDigital produto = new ProdutoDigital();
+        produto.setEstoque(estoque);
+        produto.setId(id);
+        produto.setNome(nome);
+        produto.setPreco(preco);
+        produto.setTipoPdt(tipoPdt);
+        produto.setTipo(tipo);
+        productList.add(produto);
+
+    }
+
 
     public void showProductList(){
-
+        List<Produto> productList = this.productList;
+        for(int i = 0; i <= productList.size() - 1; i++){
+            System.out.println(productList.get(i).getNome());
+        }
     }
 
     public void showSalesList(){
 
     }
 
+    enum tipoPdt {
+        FISICO("Fisico"),
+        DIGITAL("Digital");
+
+        private String desc;
+        tipoPdt(String desc) {
+            this.desc = desc;
+        }
+
+        public String getDesc(){
+            return desc;
+        }
+    }
 }
