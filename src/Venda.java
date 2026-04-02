@@ -1,10 +1,10 @@
 import java.util.Date;
-import java.util.List;
 
 public class Venda {
     private int id;
     private Date data;
     private String tipo;
+    private double valor;
 
     public Venda(){
         this.id = 0;
@@ -15,6 +15,5 @@ public class Venda {
     public double calcularTotal() {
         return 0;
     }
-
 
 }
